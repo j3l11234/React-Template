@@ -1,0 +1,41 @@
+{
+  "name": "React-Template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "gulp server",
+    "build": "gulp build",
+    "dev": "cross-env NODE_ENV=dev gulp dev"
+  },
+  "author": "j3l11234",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "browser-sync": "^2.18.8",
+    "clean-css": "^4.0.8",
+    "cross-env": "^3.2.4",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-headerfooter": "^1.0.3",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "node-sass": "^4.5.0",
+    "proxy-middleware": "^0.15.0",
+    "url": "^0.11.0",
+    "webpack": "^2.2.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
