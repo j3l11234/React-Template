@@ -8,7 +8,8 @@ module.exports = {
       'react-dom',
       'react/lib/ReactComponentWithPureRenderMixin.js'
     ],
-    app: './src/js/index.js',
+    index: './src/js/index/index.js',
+    login: './src/js/login/index.js',
   },
   output: {
     path: path.resolve(__dirname, './dist/js'),
