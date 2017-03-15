@@ -1,11 +1,11 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var cleanCSS = require('gulp-clean-css');
-var headerfooter = require('gulp-headerfooter');
-var plumber = require('gulp-plumber');
+var ejs = require('gulp-ejs');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var gutil = require('gulp-util');
 var webpack = require('webpack-stream');
 
 var proxy = require('proxy-middleware');
@@ -32,9 +32,11 @@ gulp.task('dev', ['clean'], function() {
 
 //========= build procedure =========
 gulp.task('html', function() {
+  gulp.src(['./src/pages/**/*.ejs', '!./src/pages/partials/**/*.ejs'])
+    .pipe(ejs({}, {}, {ext: '.html'}).on('error', gutil.log))
+    .pipe(gulp.dest(DIST));
+
   gulp.src(['./src/pages/**/*.html', '!./src/pages/partials/*.html'])
-    .pipe(headerfooter.header('./src/pages/partials/header.html'))
-    .pipe(headerfooter.footer('./src/pages/partials/footer.html'))
     .pipe(gulp.dest(DIST));
 });
 
@@ -65,7 +67,7 @@ gulp.task('other', function() {
   //   './node_modules/jquery/dist/jquery?(.min).js',
   // ]).pipe(gulp.dest(DIST + '/js'));
 
-  gulp.src(['./src/!(js|pages|scss)'])
+  gulp.src(['./src/!(js|pages|scss)/**/*'])
     .pipe(gulp.dest('./dist/'));
 
   // You can add your custom procedure here
@@ -75,17 +77,16 @@ gulp.task('other', function() {
 //========= watch =========
 gulp.task('watch', function() {
   gulp.watch(['./src/scss/**/*.scss'], ['style']);
-  gulp.watch(['./src/pages/**/*.html'], ['html']);
+  gulp.watch(['./src/pages/**/*'], ['html']);
   gulp.watch(['./src/!(js|pages|scss)'], ['other']);
 });
 
 gulp.task('webpack-watch', function() {
   gulp.src('./src/js/**/*.js')
-    .pipe(plumber())
     .pipe(webpack(Object.assign(
       require('./webpack.config.js'),
       { watch: true }
-    ), require('webpack')))
+    ), require('webpack')).on('error', gutil.log))
     .pipe(gulp.dest(DIST + '/js'));
 });
 
