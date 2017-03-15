@@ -13,7 +13,6 @@ import RegisterPage from './containers/RegisterPage';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = shouldComponentUpdate.bind(this);
 
     this.state = {};
   }

@@ -14,7 +14,6 @@ import BarPage from './containers/BarPage';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = shouldComponentUpdate.bind(this);
 
     this.state = {};
   }
